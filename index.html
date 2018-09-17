@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Jotastic</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+    <div id="app">
+        <div j-if="pessoa">
+            <h1>{{ appName }}</h1>
+        </div>
+        <p j-for="pessoa of pessoas">
+            <span>{{ pessoa.nome }}</span>
+        </p>
+        <teste-jors teste="jonathan"></teste-jors>
+    </div>
+    <script type="module">
+        import { Jotastic } from './jotastic/jotastic.js';
+
+        Jotastic.add('teste-jors', {
+            html: '<span>{{ teste }}</span>',
+            data () {
+                return {
+                    teste: 'teste'
+                };
+            }
+        });
+
+        new Jotastic({
+            el: '#app',
+            data () {
+                return {
+                    appName: 'Jotastic',
+                    pessoas: [
+                        {
+                            nome: 'Jonathan Reis dos Santos'
+                        },
+                        {
+                            nome: 'Lucimara dos Reis Gil'
+                        }
+                    ]
+                };
+            }
+        });
+    </script>
+</body>
+</html>
